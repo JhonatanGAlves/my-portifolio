@@ -1,4 +1,5 @@
 import { Source_Code_Pro } from "next/font/google";
+import Header from "../components/header";
 import StyledComponentsRegistry from "../lib/styledComponentsRegistry";
 import ThemeProvider from "@/provider/ThemeProvider";
 import { GlobalStyles } from "@/styles/global";
@@ -27,6 +28,7 @@ export default function RootLayout({
           <PortfolioProvider>
             <ThemeProvider>
               <GlobalStyles />
+              <Header />
               {children}
             </ThemeProvider>
           </PortfolioProvider>
