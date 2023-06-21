@@ -1,6 +1,13 @@
 import { Source_Code_Pro } from "next/font/google";
+import StyledComponentsRegistry from "../lib/styledComponentsRegistry";
+import ThemeProvider from "@/provider/ThemeProvider";
+import { GlobalStyles } from "@/styles/global";
+import PortfolioProvider from "@/context/PortfolioContext";
 
-const sourceCodePro = Source_Code_Pro({ subsets: ["latin"] });
+const sourceCodePro = Source_Code_Pro({
+  subsets: ["latin"],
+  weight: ["300", "400", "700"],
+});
 
 export const metadata = {
   title: "Jhonatan Alves | Portifolio",
@@ -15,7 +22,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={sourceCodePro.className}>{children}</body>
+      <body className={sourceCodePro.className}>
+        <StyledComponentsRegistry>
+          <PortfolioProvider>
+            <ThemeProvider>
+              <GlobalStyles />
+              {children}
+            </ThemeProvider>
+          </PortfolioProvider>
+        </StyledComponentsRegistry>
+      </body>
     </html>
   );
 }
