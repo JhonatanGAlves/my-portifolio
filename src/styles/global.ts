@@ -37,7 +37,8 @@ export const GlobalStyles = createGlobalStyle`
     width: 100%;
     height: 100vh;
     
-    background: linear-gradient(180deg, var(--bg-linear-1) 0%, var(--bg-linear-2)100%);;
+    background: no-repeat center url("/backgroundWave.svg"), linear-gradient(180deg, var(--bg-linear-1) 0%, var(--bg-linear-2)100%);
+    background-size: cover;
     color: ${({ theme }) => theme["--gray-100"]};
     -webkit-font-smoothing: antialiased;    
   }

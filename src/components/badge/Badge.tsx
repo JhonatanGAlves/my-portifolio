@@ -1,6 +1,7 @@
 "use client";
 
-import { ReactNode, useState } from "react";
+import { ReactNode, useContext, useState } from "react";
+import { PortfolioContext } from "@/context/PortfolioContext";
 import { css, styled } from "styled-components";
 
 interface BadgeProps {
@@ -11,19 +12,21 @@ interface BadgeProps {
 
 export function Badge({ message, activeBadge, children }: BadgeProps) {
   const [showBadgeMessage, setShowBadgeMessage] = useState("home");
+  const { theme } = useContext(PortfolioContext);
 
   const isActive = activeBadge === message;
   const isHover = showBadgeMessage === message;
 
   return (
     <BadgeContainer>
-      <BadgeMessage isActive={isActive} isHover={isHover}>
+      <BadgeMessage isActive={isActive} isHover={isHover} currentTheme={theme}>
         {message}
       </BadgeMessage>
       <ElementContent
         onMouseEnter={() => setShowBadgeMessage(message)}
         onMouseLeave={() => setShowBadgeMessage("")}
         isActive={isActive}
+        currentTheme={theme}
       >
         {children}
       </ElementContent>
@@ -38,7 +41,11 @@ const BadgeContainer = styled.div`
   gap: 4px;
 `;
 
-const BadgeMessage = styled.div<{ isActive: boolean; isHover: boolean }>`
+const BadgeMessage = styled.div<{
+  isActive: boolean;
+  isHover: boolean;
+  currentTheme: string;
+}>`
   ${({ isActive, isHover }) =>
     !isActive &&
     !isHover &&
@@ -54,12 +61,21 @@ const BadgeMessage = styled.div<{ isActive: boolean; isHover: boolean }>`
 
   text-transform: capitalize;
 
-  color: ${({ isActive }) => (isActive ? "var(--gray-800)" : "#828187")};
-  background-color: ${({ isActive }) =>
-    isActive ? "var(--detail)" : "#1d1d1d"};
+  color: ${({ isActive, currentTheme }) =>
+    isActive
+      ? "var(--gray-800)"
+      : currentTheme === "dark"
+      ? "#828187"
+      : "#e1e1e1"};
+  background-color: ${({ isActive, currentTheme }) =>
+    isActive
+      ? "var(--detail)"
+      : currentTheme === "dark"
+      ? "#1d1d1d"
+      : "#828187"};
 `;
 
-const ElementContent = styled.div<{ isActive: boolean }>`
+const ElementContent = styled.div<{ isActive: boolean; currentTheme: string }>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -68,11 +84,20 @@ const ElementContent = styled.div<{ isActive: boolean }>`
 
   border-radius: 50%;
 
-  background-color: ${({ isActive }) =>
-    isActive ? "var(--detail)" : "#1d1d1d"};
+  background-color: ${({ isActive, currentTheme }) =>
+    isActive
+      ? "var(--detail)"
+      : currentTheme === "dark"
+      ? "#1d1d1d"
+      : "#828187"};
 
   svg {
     margin: auto;
-    color: ${({ isActive }) => (isActive ? "var(--gray-800)" : "#828187")};
+    color: ${({ isActive, currentTheme }) =>
+      isActive
+        ? "var(--gray-800)"
+        : currentTheme === "dark"
+        ? "#828187"
+        : "#e1e1e1"};
   }
 `;

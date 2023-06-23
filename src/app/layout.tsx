@@ -4,6 +4,7 @@ import StyledComponentsRegistry from "../lib/styledComponentsRegistry";
 import ThemeProvider from "@/provider/ThemeProvider";
 import { GlobalStyles } from "@/styles/global";
 import PortfolioProvider from "@/context/PortfolioContext";
+import Main from "@/components/main/Main";
 
 const sourceCodePro = Source_Code_Pro({
   subsets: ["latin"],
@@ -29,7 +30,7 @@ export default function RootLayout({
             <ThemeProvider>
               <GlobalStyles />
               <Header />
-              {children}
+              <Main>{children}</Main>
             </ThemeProvider>
           </PortfolioProvider>
         </StyledComponentsRegistry>
