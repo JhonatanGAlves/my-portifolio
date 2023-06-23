@@ -1,15 +1,14 @@
 "use client";
 
 import { styled } from "styled-components";
-import Image from "next/image";
-import usaDarkFlag from "../../assets/icons/flags/usa-dark-flag.svg";
-import darkIcon from "../../assets/icons/dark-icon.svg";
 import { FaGraduationCap, FaHome, FaLaptopCode } from "react-icons/fa";
 import { AiOutlineMessage } from "react-icons/ai";
 import Link from "next/link";
 import { useContext, useState } from "react";
 import { PortfolioContext } from "@/context/PortfolioContext";
 import { Badge } from "../badge/Badge";
+import Flag from "../flag/Flag";
+import ThemeIcon from "../theme-icon/ThemeIcon";
 
 export default function Header() {
   const { theme, setTheme } = useContext(PortfolioContext);
@@ -19,7 +18,7 @@ export default function Header() {
     <HeaderContainer>
       <HeaderContent>
         <Languages isDarkTheme={theme === "dark"}>
-          <Image alt="The flag of USA" src={usaDarkFlag} width={30} />
+          <Flag currentTheme={theme} width={35} />
           <div className="labels">
             <button>EN</button> / <button>PT</button>
           </div>
@@ -69,7 +68,7 @@ export default function Header() {
               Light
             </button>
           </div>
-          <Image alt="dark icon" src={darkIcon} width={40} />
+          <ThemeIcon currentTheme={theme} width={40} />
         </SwitchTheme>
       </HeaderContent>
     </HeaderContainer>
@@ -103,12 +102,17 @@ const Languages = styled.div<{ isDarkTheme: boolean }>`
   align-items: center;
   gap: 12px;
 
+  svg {
+    margin-top: 4px;
+  }
+
   button {
     border: none;
     cursor: pointer;
     font-family: inherit;
     outline: none;
 
+    color: var(--gray-100);
     background-color: transparent;
 
     &:hover {

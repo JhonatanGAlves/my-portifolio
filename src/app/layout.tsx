@@ -1,5 +1,5 @@
 import { Source_Code_Pro } from "next/font/google";
-import Header from "../components/header";
+import Header from "../components/header/Header";
 import StyledComponentsRegistry from "../lib/styledComponentsRegistry";
 import ThemeProvider from "@/provider/ThemeProvider";
 import { GlobalStyles } from "@/styles/global";
