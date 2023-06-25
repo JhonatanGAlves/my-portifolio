@@ -83,7 +83,9 @@ const MainContent = styled.div`
   border-image: linear-gradient(var(--gray-500), rgba(130, 129, 135, 0)) 30;
 `;
 
-const PageContent = styled.div``;
+const PageContent = styled.div`
+  height: 100%;
+`;
 
 const SocialMedia = styled.div`
   display: flex;

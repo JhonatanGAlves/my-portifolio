@@ -16,8 +16,6 @@ export function getExperienceAndWidth(initialDate: Date): {
 
   const width = Math.floor(Number(yearsOfExperience) * 2) * pixelsPerIncrement; // Each 0.5 years of experience, width will be 75px, therefore 1 year of experience, width will be 150px
 
-  console.log("width", width);
-
   const experienceAndWidth = {
     experience: Math.floor(Number(yearsOfExperience)),
     width: (width === 0 ? 75 : width) / 16, // 1rem equals 16px

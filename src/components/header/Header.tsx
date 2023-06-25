@@ -77,6 +77,7 @@ export default function Header() {
 
 const HeaderContainer = styled.header`
   padding: 0.5rem 12rem;
+  z-index: 9999;
 `;
 
 const HeaderContent = styled.div`
