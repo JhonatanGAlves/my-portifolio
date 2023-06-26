@@ -1,7 +1,6 @@
 import { Source_Code_Pro } from "next/font/google";
 import Header from "../components/header/Header";
 import StyledComponentsRegistry from "../lib/styledComponentsRegistry";
-import ThemeProvider from "@/provider/ThemeProvider";
 import { GlobalStyles } from "@/styles/global";
 import PortfolioProvider from "@/context/PortfolioContext";
 import Main from "@/components/main/Main";
@@ -12,7 +11,7 @@ const sourceCodePro = Source_Code_Pro({
 });
 
 export const metadata = {
-  title: "Jhonatan Alves | Portifolio",
+  title: "Jhonatan Alves | Portfolio",
   description:
     "Jhonatan Alves is a Software Developer with 2 years of experience.",
 };
@@ -27,11 +26,9 @@ export default function RootLayout({
       <body className={sourceCodePro.className}>
         <StyledComponentsRegistry>
           <PortfolioProvider>
-            <ThemeProvider>
-              <GlobalStyles />
-              <Header />
-              <Main>{children}</Main>
-            </ThemeProvider>
+            <GlobalStyles />
+            <Header />
+            <Main>{children}</Main>
           </PortfolioProvider>
         </StyledComponentsRegistry>
       </body>

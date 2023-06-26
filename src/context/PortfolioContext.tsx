@@ -1,6 +1,8 @@
 "use client";
 
 import React, { ReactNode, createContext, useEffect, useState } from "react";
+import { ThemeProvider } from "styled-components";
+import { darkMode, lightMode } from "@/theme/theme";
 
 interface PortfolioProps {
   children: ReactNode;
@@ -24,7 +26,9 @@ export default function PortfolioProvider({ children }: PortfolioProps) {
 
   return (
     <PortfolioContext.Provider value={{ theme, setTheme }}>
-      {children}
+      <ThemeProvider theme={theme === "dark" ? darkMode : lightMode}>
+        {children}
+      </ThemeProvider>
     </PortfolioContext.Provider>
   );
 }
