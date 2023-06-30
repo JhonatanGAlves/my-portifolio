@@ -46,7 +46,7 @@ export default function Main({ children }: MainProps) {
 const MainContainer = styled.main`
   width: 100%;
   height: 100%;
-  padding: 0 2.75rem 3.5rem;
+  padding: 0 2.75rem 4.7rem;
 
   .button-mail {
     position: fixed;
@@ -75,7 +75,6 @@ const MainContainer = styled.main`
 
 const MainContent = styled.div`
   width: 100%;
-  height: 100%;
   padding: 0 9.3rem;
 
   border-width: 1px;
@@ -83,9 +82,7 @@ const MainContent = styled.div`
   border-image: linear-gradient(var(--gray-500), rgba(130, 129, 135, 0)) 30;
 `;
 
-const PageContent = styled.div`
-  height: 100%;
-`;
+const PageContent = styled.div``;
 
 const SocialMedia = styled.div`
   display: flex;

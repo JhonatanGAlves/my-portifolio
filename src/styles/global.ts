@@ -35,9 +35,9 @@ export const GlobalStyles = createGlobalStyle`
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 100vh;
+    height: fit-content;
     
-    background: no-repeat center url("/backgroundWave.svg"), linear-gradient(180deg, var(--bg-linear-1) 0%, var(--bg-linear-2)100%);
+    background: repeat-y url("/backgroundWave.svg"), linear-gradient(180deg, var(--bg-linear-1) 0%, var(--bg-linear-2)100%);
     background-size: cover;
     color: ${({ theme }) => theme["--gray-100"]};
     -webkit-font-smoothing: antialiased;    
