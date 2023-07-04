@@ -3,8 +3,12 @@ import { styled } from "styled-components";
 import Link from "next/link";
 import { FaLongArrowAltDown, FaLongArrowAltUp } from "react-icons/fa";
 import ProjectCard from "@/components/card/ProjectCard";
+import useProjects from "@/hooks/useProjects";
+import joystickImage from "../../assets/joystick.png";
 
 export default function ProjectsPage() {
+  const { projects } = useProjects();
+
   return (
     <ProjectsContainer>
       <TitleAndParagraph>
@@ -26,12 +30,18 @@ export default function ProjectsPage() {
         <SortBy active={false}>A-Z</SortBy>
       </Sort>
       <ProjectsContent>
-        <ProjectCard
-          projectName="Project 01"
-          description="Blá blá blá"
-          url=""
-          image=""
-        />
+        {projects.map((project) => {
+          return (
+            <ProjectCard
+              key={project.id}
+              projectName={project.name}
+              description={project.description}
+              url={project.html_url}
+              image={joystickImage}
+              createdAt={project.created_at}
+            />
+          );
+        })}
       </ProjectsContent>
     </ProjectsContainer>
   );

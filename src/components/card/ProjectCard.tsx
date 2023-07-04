@@ -1,14 +1,16 @@
 import { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
-import { FaLongArrowAltUp } from "react-icons/fa";
+import Image, { StaticImageData } from "next/image";
+import { FaLongArrowAltUp, FaCalendarAlt } from "react-icons/fa";
 import { styled } from "styled-components";
+import moment from "moment";
 
 interface ProjectCardProps {
   projectName: string;
   description: string;
   url: string;
-  image: string;
+  image: StaticImageData;
+  createdAt: string;
 }
 
 export default function ProjectCard({
@@ -16,6 +18,7 @@ export default function ProjectCard({
   description,
   url,
   image,
+  createdAt,
 }: ProjectCardProps) {
   const [isMouseHover, setIsMouseHover] = useState(false);
 
@@ -36,8 +39,14 @@ export default function ProjectCard({
           </BorderOnHoverContainer>
         )}
       </ImageCard>
-      <p>{description}</p>
-      <h2>{projectName}</h2>
+      <DescriptionCard>
+        <p title={description}>{description}</p>
+        <h2>{projectName}</h2>
+        <CreationDate>
+          <FaCalendarAlt />
+          <span>{moment(createdAt).format("LL")}</span>
+        </CreationDate>
+      </DescriptionCard>
     </Card>
   );
 }
@@ -55,12 +64,22 @@ const Card = styled.div`
     font-size: 0.75rem;
     line-height: 1.2rem;
     margin-top: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 `;
 
 const ImageCard = styled.div`
   position: relative;
   border-radius: 8px;
+`;
+
+const DescriptionCard = styled.div`
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 12px;
 `;
 
 const BorderOnHoverContainer = styled.div`
@@ -103,5 +122,16 @@ const BorderOnHover = styled.div`
     :hover {
       opacity: 0.8;
     }
+  }
+`;
+
+const CreationDate = styled.div`
+  display: flex;
+  align-items: end;
+  flex: 1;
+  gap: 8px;
+
+  svg {
+    margin-bottom: 2px;
   }
 `;
