@@ -22,6 +22,12 @@ export default function ProjectCard({
 }: ProjectCardProps) {
   const [isMouseHover, setIsMouseHover] = useState(false);
 
+  function removeDashFromProjectName(projectName: string): string {
+    if (!projectName) return "";
+
+    return projectName.split("-").join(" ").toLowerCase();
+  }
+
   return (
     <Card
       onMouseEnter={() => setIsMouseHover(true)}
@@ -41,7 +47,7 @@ export default function ProjectCard({
       </ImageCard>
       <DescriptionCard>
         <p title={description}>{description}</p>
-        <h2>{projectName}</h2>
+        <h2>{removeDashFromProjectName(projectName)}</h2>
         <CreationDate>
           <FaCalendarAlt />
           <span>{moment(createdAt).format("LL")}</span>
@@ -80,6 +86,10 @@ const DescriptionCard = styled.div`
   flex: 1;
   flex-direction: column;
   gap: 12px;
+
+  h2 {
+    text-transform: capitalize;
+  }
 `;
 
 const BorderOnHoverContainer = styled.div`
