@@ -1,25 +1,31 @@
 "use client";
-import { styled } from "styled-components";
+import { useEffect, useState } from "react";
 import Link from "next/link";
+import { styled } from "styled-components";
+import moment from "moment";
 import { FaLongArrowAltDown, FaLongArrowAltUp } from "react-icons/fa";
+
 import ProjectCard from "@/components/card/ProjectCard";
 import useProjects from "@/hooks/useProjects";
 import joystickImage from "../../assets/joystick.png";
-import { useEffect, useState } from "react";
 import { ProjectTypes } from "@/types/types";
-import moment from "moment";
 
 export default function ProjectsPage() {
   const [alteredProjects, setAlteredProjects] = useState<ProjectTypes[]>([]);
-  const [sortBy, setSortBy] = useState("date");
-  const [sortDirection, setSortDirection] = useState("asc");
+  const [sortBy, setSortBy] = useState("name");
+  const [activeSort, setActiveSort] = useState("name");
+  const [sortDirection, setSortDirection] = useState("");
+
   const { projects } = useProjects();
 
   const applySort = (sortByValue: string) => {
+    if (!sortDirection) {
+      setSortDirection("asc");
+    }
+
     if (sortBy === sortByValue) {
       setSortDirection((prevState) => (prevState === "asc" ? "desc" : "asc"));
-    } else {
-      setSortDirection("asc");
+      setActiveSort(sortByValue);
     }
 
     setSortBy(sortByValue);
@@ -77,21 +83,35 @@ export default function ProjectsPage() {
         </p>
       </TitleAndParagraph>
       <Sort>
-        <SortBy active={sortBy === "date"} onClick={() => applySort("date")}>
+        <SortBy
+          active={activeSort === "name"}
+          onMouseEnter={() => setSortBy("name")}
+          onMouseLeave={() => setSortBy("")}
+          onClick={() => applySort("name")}
+        >
+          Name
+          {sortDirection &&
+            activeSort === "name" &&
+            (sortDirection === "asc" ? (
+              <FaLongArrowAltUp size={12} />
+            ) : (
+              <FaLongArrowAltDown size={12} />
+            ))}
+        </SortBy>
+        <SortBy
+          active={activeSort === "date"}
+          onMouseEnter={() => setSortBy("date")}
+          onMouseLeave={() => setSortBy("")}
+          onClick={() => applySort("date")}
+        >
           Date{" "}
-          {sortBy === "date" &&
+          {sortDirection &&
+            activeSort === "date" &&
             (sortDirection === "asc" ? (
               <FaLongArrowAltDown size={12} />
             ) : (
               <FaLongArrowAltUp size={12} />
             ))}
-        </SortBy>
-        <SortBy active={sortBy === "name"} onClick={() => applySort("name")}>
-          {sortBy === "name"
-            ? sortDirection === "asc"
-              ? "Z-A"
-              : "A-Z"
-            : "A-Z"}
         </SortBy>
       </Sort>
       <ProjectsContent>
