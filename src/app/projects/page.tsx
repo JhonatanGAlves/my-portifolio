@@ -5,9 +5,63 @@ import { FaLongArrowAltDown, FaLongArrowAltUp } from "react-icons/fa";
 import ProjectCard from "@/components/card/ProjectCard";
 import useProjects from "@/hooks/useProjects";
 import joystickImage from "../../assets/joystick.png";
+import { useEffect, useState } from "react";
+import { ProjectTypes } from "@/types/types";
+import moment from "moment";
 
 export default function ProjectsPage() {
+  const [alteredProjects, setAlteredProjects] = useState<ProjectTypes[]>([]);
+  const [sortBy, setSortBy] = useState("date");
+  const [sortDirection, setSortDirection] = useState("asc");
   const { projects } = useProjects();
+
+  const applySort = (sortByValue: string) => {
+    if (sortBy === sortByValue) {
+      setSortDirection((prevState) => (prevState === "asc" ? "desc" : "asc"));
+    } else {
+      setSortDirection("asc");
+    }
+
+    setSortBy(sortByValue);
+
+    const sortedProjects = [...alteredProjects];
+
+    if (sortBy === "date") {
+      sortedProjects.sort(compareByDate);
+    } else if (sortBy === "name") {
+      sortedProjects.sort(compareByName);
+    }
+
+    if (sortDirection === "desc") {
+      sortedProjects.reverse();
+    }
+
+    setAlteredProjects(sortedProjects);
+  };
+
+  const compareByDate = (a: ProjectTypes, b: ProjectTypes) => {
+    const dateA = moment(a.created_at).unix();
+    const dateB = moment(b.created_at).unix();
+
+    if (dateA < dateB) {
+      return -1;
+    } else if (dateA > dateB) {
+      return 1;
+    } else {
+      return 0;
+    }
+  };
+
+  const compareByName = (a: ProjectTypes, b: ProjectTypes) => {
+    const nameA = a.name.toLowerCase();
+    const nameB = b.name.toLowerCase();
+
+    return nameA.localeCompare(nameB);
+  };
+
+  useEffect(() => {
+    setAlteredProjects([...projects]);
+  }, [projects]);
 
   return (
     <ProjectsContainer>
@@ -23,14 +77,25 @@ export default function ProjectsPage() {
         </p>
       </TitleAndParagraph>
       <Sort>
-        <SortBy active={true}>
-          Date <FaLongArrowAltDown size={12} />
-          {/* <FaLongArrowAltUp size={12} /> */}
+        <SortBy active={sortBy === "date"} onClick={() => applySort("date")}>
+          Date{" "}
+          {sortBy === "date" &&
+            (sortDirection === "asc" ? (
+              <FaLongArrowAltDown size={12} />
+            ) : (
+              <FaLongArrowAltUp size={12} />
+            ))}
         </SortBy>
-        <SortBy active={false}>A-Z</SortBy>
+        <SortBy active={sortBy === "name"} onClick={() => applySort("name")}>
+          {sortBy === "name"
+            ? sortDirection === "asc"
+              ? "Z-A"
+              : "A-Z"
+            : "A-Z"}
+        </SortBy>
       </Sort>
       <ProjectsContent>
-        {projects.map((project) => {
+        {alteredProjects.map((project) => {
           return (
             <ProjectCard
               key={project.id}
@@ -106,6 +171,8 @@ const SortBy = styled.div<{ active: boolean }>`
   cursor: pointer;
 
   color: ${({ active }) => (active ? "var(--detail)" : "var(--gray-500)")};
+
+  user-select: none;
 
   &:hover {
     opacity: 0.8;
