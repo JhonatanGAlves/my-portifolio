@@ -4,6 +4,7 @@ import StyledComponentsRegistry from "../lib/styledComponentsRegistry";
 import { GlobalStyles } from "@/styles/global";
 import PortfolioProvider from "@/context/PortfolioContext";
 import Main from "@/components/main/Main";
+import Footer from "@/components/footer/Footer";
 
 const sourceCodePro = Source_Code_Pro({
   subsets: ["latin"],
@@ -29,6 +30,7 @@ export default function RootLayout({
             <GlobalStyles />
             <Header />
             <Main>{children}</Main>
+            <Footer />
           </PortfolioProvider>
         </StyledComponentsRegistry>
       </body>
