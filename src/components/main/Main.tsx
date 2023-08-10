@@ -44,9 +44,9 @@ export default function Main({ children }: MainProps) {
 }
 
 const MainContainer = styled.main`
+  position: relative;
   width: 100%;
-  height: 100%;
-  padding: 0 2.75rem 4.7rem;
+  padding: 0 2.75rem 3.125rem;
 
   .button-mail {
     position: fixed;
@@ -89,7 +89,7 @@ const SocialMedia = styled.div`
   flex-direction: column;
   gap: 4px;
   position: fixed;
-  bottom: 200px;
+  bottom: 130px;
   left: 65px;
 
   a {

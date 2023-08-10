@@ -14,7 +14,7 @@ export default function ProjectsPage() {
   const [alteredProjects, setAlteredProjects] = useState<ProjectTypes[]>([]);
   const [sortBy, setSortBy] = useState("name");
   const [activeSort, setActiveSort] = useState("name");
-  const [sortDirection, setSortDirection] = useState("");
+  const [sortDirection, setSortDirection] = useState("desc");
 
   const { projects } = useProjects();
 

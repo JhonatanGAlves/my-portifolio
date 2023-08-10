@@ -41,7 +41,7 @@ export default function App() {
         className="jhonatan-alves-image"
         alt="Jhonatan Alves image"
         src={jhonatanAlvesBgImage}
-        width={860}
+        width={730}
       />
     </HomeContainer>
   );
@@ -50,8 +50,9 @@ export default function App() {
 const HomeContainer = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  height: calc(100vh - 15.625rem);
   gap: 48px;
-  padding: 6.5rem 0;
 
   .jhonatan-alves-image {
     position: absolute;
