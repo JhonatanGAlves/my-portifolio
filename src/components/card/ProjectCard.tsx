@@ -1,16 +1,21 @@
 import { useState } from "react";
+
 import Link from "next/link";
 import Image, { StaticImageData } from "next/image";
-import { FaLongArrowAltUp, FaCalendarAlt } from "react-icons/fa";
 import { styled } from "styled-components";
 import moment from "moment";
+import { FaLongArrowAltUp, FaCalendarAlt } from "react-icons/fa";
+
+import ToolsStatus from "./tools-component/ToolsStatus";
+import { ToolsType } from "@/types/types";
 
 interface ProjectCardProps {
   projectName: string;
-  description: string;
+  description: string | null;
   url: string;
   image: StaticImageData;
   createdAt: string;
+  tools: ToolsType;
 }
 
 export default function ProjectCard({
@@ -19,6 +24,7 @@ export default function ProjectCard({
   url,
   image,
   createdAt,
+  tools,
 }: ProjectCardProps) {
   const [isMouseHover, setIsMouseHover] = useState(false);
 
@@ -48,6 +54,9 @@ export default function ProjectCard({
       <DescriptionCard>
         <p title={description}>{description}</p>
         <h2>{removeDashFromProjectName(projectName)}</h2>
+        <ToolsContainer>
+          <ToolsStatus tools={tools} />
+        </ToolsContainer>
         <CreationDate>
           <FaCalendarAlt />
           <span>{moment(createdAt).format("LL")}</span>
@@ -135,10 +144,14 @@ const BorderOnHover = styled.div`
   }
 `;
 
-const CreationDate = styled.div`
+const ToolsContainer = styled.div`
   display: flex;
   align-items: end;
   flex: 1;
+`;
+
+const CreationDate = styled.div`
+  display: flex;
   gap: 8px;
 
   svg {

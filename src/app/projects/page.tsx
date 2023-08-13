@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+
 import Link from "next/link";
 import { styled } from "styled-components";
 import moment from "moment";
@@ -124,6 +125,7 @@ export default function ProjectsPage() {
               url={project.html_url}
               image={joystickImage}
               createdAt={project.created_at}
+              tools={project.tools}
             />
           );
         })}
