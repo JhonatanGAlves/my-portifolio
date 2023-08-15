@@ -15,4 +15,5 @@ export type ToolsType = {
   HTML?: number;
   CSS?: number;
   SCSS?: number;
+  PHP?: number;
 };

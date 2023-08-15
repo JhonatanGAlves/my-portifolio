@@ -10,6 +10,7 @@ import ProjectCard from "@/components/card/ProjectCard";
 import useProjects from "@/hooks/useProjects";
 import joystickImage from "../../assets/joystick.png";
 import { ProjectTypes } from "@/types/types";
+import { ToolFilter } from "./tool-filter/ToolFilter";
 
 export default function ProjectsPage() {
   const [alteredProjects, setAlteredProjects] = useState<ProjectTypes[]>([]);
@@ -83,38 +84,46 @@ export default function ProjectsPage() {
           .
         </p>
       </TitleAndParagraph>
-      <Sort>
-        <SortBy
-          active={activeSort === "name"}
-          onMouseEnter={() => setSortBy("name")}
-          onMouseLeave={() => setSortBy("")}
-          onClick={() => applySort("name")}
-        >
-          Name
-          {sortDirection &&
-            activeSort === "name" &&
-            (sortDirection === "asc" ? (
-              <FaLongArrowAltUp size={12} />
-            ) : (
-              <FaLongArrowAltDown size={12} />
-            ))}
-        </SortBy>
-        <SortBy
-          active={activeSort === "date"}
-          onMouseEnter={() => setSortBy("date")}
-          onMouseLeave={() => setSortBy("")}
-          onClick={() => applySort("date")}
-        >
-          Date{" "}
-          {sortDirection &&
-            activeSort === "date" &&
-            (sortDirection === "asc" ? (
-              <FaLongArrowAltDown size={12} />
-            ) : (
-              <FaLongArrowAltUp size={12} />
-            ))}
-        </SortBy>
-      </Sort>
+
+      <SortAndFilter>
+        <Sort>
+          <SortBy
+            active={activeSort === "name"}
+            onMouseEnter={() => setSortBy("name")}
+            onMouseLeave={() => setSortBy("")}
+            onClick={() => applySort("name")}
+          >
+            Name
+            {sortDirection &&
+              activeSort === "name" &&
+              (sortDirection === "asc" ? (
+                <FaLongArrowAltUp size={12} />
+              ) : (
+                <FaLongArrowAltDown size={12} />
+              ))}
+          </SortBy>
+          <SortBy
+            active={activeSort === "date"}
+            onMouseEnter={() => setSortBy("date")}
+            onMouseLeave={() => setSortBy("")}
+            onClick={() => applySort("date")}
+          >
+            Date{" "}
+            {sortDirection &&
+              activeSort === "date" &&
+              (sortDirection === "asc" ? (
+                <FaLongArrowAltDown size={12} />
+              ) : (
+                <FaLongArrowAltUp size={12} />
+              ))}
+          </SortBy>
+        </Sort>
+        <Divisor />
+        <ToolFilter
+          projects={projects}
+          setAlteredProjects={setAlteredProjects}
+        />
+      </SortAndFilter>
       <ProjectsContent>
         {alteredProjects.map((project) => {
           return (
@@ -171,11 +180,16 @@ const TitleAndParagraph = styled.div`
   }
 `;
 
+const SortAndFilter = styled.div`
+  display: flex;
+  align-items: center;
+  margin: 2.5rem 0;
+`;
+
 const Sort = styled.div`
   display: flex;
+  padding: 1rem 0;
   gap: 8px;
-
-  margin: 2.5rem 0;
 `;
 
 const SortBy = styled.div<{ active: boolean }>`
@@ -203,6 +217,15 @@ const SortBy = styled.div<{ active: boolean }>`
   svg {
     margin-top: 3px;
   }
+`;
+
+const Divisor = styled.div`
+  width: 2px;
+  height: 2.5rem;
+  border-radius: 2px;
+  background-color: var(--gray-500);
+
+  margin: 0 1rem;
 `;
 
 const ProjectsContent = styled.div`

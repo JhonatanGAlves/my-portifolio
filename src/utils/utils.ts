@@ -92,3 +92,13 @@ export function handleToolStatus(
 
   return toolStatus;
 }
+
+export const TOOLS = [
+  "All tools",
+  "TypeScript",
+  "JavaScript",
+  "HTML",
+  "CSS",
+  "SCSS",
+  "PHP",
+];

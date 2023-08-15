@@ -138,7 +138,7 @@ const BorderOnHover = styled.div`
       color: var(--detail);
     }
 
-    :hover {
+    &:hover {
       opacity: 0.8;
     }
   }
