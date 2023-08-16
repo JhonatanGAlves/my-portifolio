@@ -1,10 +1,12 @@
-import { styled } from "styled-components";
+import { useRef, useState, KeyboardEvent, useEffect } from "react";
 
-import { FaFilter, FaCheck } from "react-icons/fa";
-import { KeyboardEvent, useEffect, useRef, useState } from "react";
+import { styled } from "styled-components";
+import { FaFilter, FaCheck, FaInfoCircle } from "react-icons/fa";
+
 import { ProjectTypes } from "@/types/types";
 import { TOOLS } from "@/utils/utils";
 import { useOutsideClick } from "@/hooks/useOutsideClick";
+import { Select } from "@/components/select/Select";
 
 interface ToolFilterProps {
   projects: ProjectTypes[];
@@ -14,8 +16,27 @@ interface ToolFilterProps {
 export function ToolFilter({ projects, setAlteredProjects }: ToolFilterProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedFilter, setSelectedFilter] = useState("All tools");
+  const [selectedSufix, setSelectedSufix] = useState<{
+    value: string;
+    label: string;
+  }>(
+    localStorage.getItem("filter-sufix") === "normal"
+      ? {
+          value: "normal",
+          label: "Normal",
+        }
+      : {
+          value: "highest-percentage",
+          label: "Highest Percentage",
+        }
+  );
 
   const filterRef = useRef(null);
+
+  const SUFIX_OPTIONS = [
+    { value: "normal", label: "Normal" },
+    { value: "highest-percentage", label: "Highest Percentage" },
+  ];
 
   useOutsideClick(filterRef, () => {
     setIsOpen(false);
@@ -39,13 +60,14 @@ export function ToolFilter({ projects, setAlteredProjects }: ToolFilterProps) {
   }
 
   function onKeyEscDown(e: KeyboardEvent<HTMLDivElement | HTMLUListElement>) {
-    console.log("e", e);
     if (e.key === "Escape" || e.keyCode === 27) {
       setIsOpen(false);
     }
   }
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    localStorage.setItem("filter-sufix", selectedSufix.value);
+  }, [selectedSufix]);
 
   return (
     <ToolFilterContainer>
@@ -57,12 +79,25 @@ export function ToolFilter({ projects, setAlteredProjects }: ToolFilterProps) {
       >
         <FaFilter size={14} />
       </ToolFilterContent>
-      {isOpen && (
+      {!isOpen && (
         <ToolFilterDropdown
           ref={filterRef}
           tabIndex={0}
           onKeyDown={(e) => onKeyEscDown(e)}
         >
+          <Select
+            className="sufix-filter"
+            options={SUFIX_OPTIONS}
+            value={selectedSufix?.value}
+            onChange={(e) => {
+              const selectedValue = SUFIX_OPTIONS.find(
+                (option) => option.value === e.target.value
+              );
+
+              setSelectedSufix(selectedValue);
+            }}
+            icon={<FaInfoCircle size={14} />}
+          />
           {TOOLS.map((tool, index) => (
             <ToolFilterDropdownContainer key={index}>
               {tool === selectedFilter && <FaCheck size={12} />}
@@ -115,12 +150,12 @@ const ToolFilterContent = styled.div`
 const ToolFilterDropdown = styled.ul`
   position: absolute;
   top: 37px;
-  z-index: 9999;
+  z-index: 1499;
 
   display: flex;
   flex-direction: column;
-  width: 10.375rem;
-  padding: 0.5rem 2rem;
+  width: 13.35rem;
+  padding: 3rem 2rem 0.5rem;
 
   list-style: none;
   border: 2px solid var(--detail);
@@ -135,6 +170,12 @@ const ToolFilterDropdown = styled.ul`
     &.selected {
       color: var(--gray-500);
     }
+  }
+
+  .sufix-filter {
+    position: absolute;
+    top: 12px;
+    left: 12px;
   }
 `;
 

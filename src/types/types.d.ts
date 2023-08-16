@@ -17,3 +17,8 @@ export type ToolsType = {
   SCSS?: number;
   PHP?: number;
 };
+
+export type SelectOptions = {
+  value: string;
+  label: string;
+};
