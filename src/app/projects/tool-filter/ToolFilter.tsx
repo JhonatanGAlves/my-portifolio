@@ -46,9 +46,13 @@ export function ToolFilter({ projects, setAlteredProjects }: ToolFilterProps) {
     if (tool !== "All tools") {
       let newAlteredProjects: ProjectTypes[] = [...projects];
 
-      newAlteredProjects = newAlteredProjects.filter((project) =>
-        Object.keys(project.tools).includes(tool)
-      );
+      if (selectedSufix.value === "highest-percentage") {
+        newAlteredProjects = orderBySelectedSufix(newAlteredProjects, tool);
+      } else {
+        newAlteredProjects = newAlteredProjects.filter((project) =>
+          Object.keys(project.tools).includes(tool)
+        );
+      }
 
       setAlteredProjects(newAlteredProjects);
     } else {
@@ -57,6 +61,20 @@ export function ToolFilter({ projects, setAlteredProjects }: ToolFilterProps) {
 
     setSelectedFilter(tool);
     setIsOpen((prevState) => !prevState);
+  }
+
+  function orderBySelectedSufix(
+    projects: ProjectTypes[],
+    tool: string
+  ): ProjectTypes[] {
+    return projects
+      .filter((project) => Object.keys(project.tools).includes(tool))
+      .filter(
+        (pjt) =>
+          Object.values(pjt.tools).reduce((a, b) => {
+            return Math.max(a, b);
+          }, -Infinity) === pjt.tools[tool]
+      );
   }
 
   function onKeyEscDown(e: KeyboardEvent<HTMLDivElement | HTMLUListElement>) {
@@ -79,7 +97,7 @@ export function ToolFilter({ projects, setAlteredProjects }: ToolFilterProps) {
       >
         <FaFilter size={14} />
       </ToolFilterContent>
-      {!isOpen && (
+      {isOpen && (
         <ToolFilterDropdown
           ref={filterRef}
           tabIndex={0}
