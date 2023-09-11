@@ -1,7 +1,6 @@
 import { useState } from "react";
 
 import Link from "next/link";
-import Image, { StaticImageData } from "next/image";
 import { styled } from "styled-components";
 import moment from "moment";
 import { FaLongArrowAltUp, FaCalendarAlt } from "react-icons/fa";
@@ -12,9 +11,8 @@ import { ProjectImage } from "../project-image/ProjectImage";
 
 interface ProjectCardProps {
   projectName: string;
-  description: string | null;
+  description: string | undefined;
   url: string;
-  image: StaticImageData;
   createdAt: string;
   tools: ToolsType;
   topics: string[];
@@ -24,7 +22,6 @@ export default function ProjectCard({
   projectName,
   description,
   url,
-  image,
   createdAt,
   tools,
   topics,

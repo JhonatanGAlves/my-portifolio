@@ -15,7 +15,7 @@ export function Select({ options, icon, ...props }: SelectProps) {
     <StyledIconAndSelect className={props.className}>
       {icon && (
         <Tooltip
-          title='The tool options below follow what was defined in the select beside. If "Highest Percentage" is set, when selecting "TypeScript", the list will be filtered only by projects that contain TypeScript as the highest percentage.'
+          title='The tool options below follow what was defined in the select beside. For example, if "Highest Percentage" is set, when selecting "TypeScript", the list will be filtered only by projects that contain TypeScript as the highest percentage.'
           placement="top"
           arrow
         >

@@ -1,7 +1,7 @@
 export type ProjectTypes = {
   id: number;
   name: string;
-  description: string | null;
+  description: string | undefined;
   html_url: string;
   created_at: string;
   languages_url?: string;
