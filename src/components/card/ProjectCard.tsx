@@ -8,6 +8,7 @@ import { FaLongArrowAltUp, FaCalendarAlt } from "react-icons/fa";
 
 import ToolsStatus from "./tools-component/ToolsStatus";
 import { ToolsType } from "@/types/types";
+import { ProjectImage } from "../project-image/ProjectImage";
 
 interface ProjectCardProps {
   projectName: string;
@@ -16,6 +17,7 @@ interface ProjectCardProps {
   image: StaticImageData;
   createdAt: string;
   tools: ToolsType;
+  topics: string[];
 }
 
 export default function ProjectCard({
@@ -25,6 +27,7 @@ export default function ProjectCard({
   image,
   createdAt,
   tools,
+  topics,
 }: ProjectCardProps) {
   const [isMouseHover, setIsMouseHover] = useState(false);
 
@@ -35,12 +38,12 @@ export default function ProjectCard({
   }
 
   return (
-    <Card
-      onMouseEnter={() => setIsMouseHover(true)}
-      onMouseLeave={() => setIsMouseHover(false)}
-    >
-      <ImageCard>
-        <Image alt="Image project" src={image} width={318} />
+    <Card>
+      <ImageCard
+        onMouseEnter={() => setIsMouseHover(true)}
+        onMouseLeave={() => setIsMouseHover(false)}
+      >
+        <ProjectImage projectName={projectName} topics={topics} />
         {isMouseHover && (
           <BorderOnHoverContainer>
             <BorderOnHover>

@@ -135,6 +135,7 @@ export default function ProjectsPage() {
               image={joystickImage}
               createdAt={project.created_at}
               tools={project.tools}
+              topics={project.topics}
             />
           );
         })}
