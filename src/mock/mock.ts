@@ -33,3 +33,37 @@ export const mainExperiences = [
     image: nodeIcon,
   },
 ];
+
+export const workExperiences = [
+  {
+    period: {
+      start: "01-09-2021",
+      end: null,
+    },
+    companyName: "Intelie by Viasat",
+    position: "Software Developer",
+    country: "Brazil",
+    description: "Lorem Ipsum is Lorem Ipsum is Lorem Ipsum dwd saa red amet.",
+  },
+  {
+    period: {
+      start: "05-01-2021",
+      end: "27-08-2021",
+    },
+    companyName: "Eleven Up",
+    position: "Web Developer",
+    country: "Brazil",
+    description:
+      "Ipsum is Lorem Ipsum dwd Lorem Ipsum is Lorem saa red amet. Ipsum is Lorem Ipsum dwd Lorem Ipsum is Lorem saa red amet. Ipsum is Lorem Ipsum dwd Lorem Ipsum is Lorem saa red amet.",
+  },
+  {
+    period: {
+      start: "01-02-2020",
+      end: "20-08-2020",
+    },
+    companyName: "Another Company",
+    position: "Other Position",
+    country: "Brazil",
+    description: "Lorem Ipsum is Lorem Ipsum is Lorem Ipsum dwd saa red amet.",
+  },
+];
