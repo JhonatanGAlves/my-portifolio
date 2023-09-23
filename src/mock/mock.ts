@@ -43,7 +43,8 @@ export const workExperiences = [
     companyName: "Intelie by Viasat",
     position: "Software Developer",
     country: "Brazil",
-    description: "Lorem Ipsum is Lorem Ipsum is Lorem Ipsum dwd saa red amet.",
+    description:
+      "I'm a Front-End Developer in a multinational company's Performance team, specializing in the O&G (Oil and Gas) industry. I create plugins and widgets to optimize processes, conduct code reviews, and write unit tests using JUnit and Jest, as well as E2E tests with Selenium.",
   },
   {
     period: {
@@ -54,16 +55,104 @@ export const workExperiences = [
     position: "Web Developer",
     country: "Brazil",
     description:
-      "Ipsum is Lorem Ipsum dwd Lorem Ipsum is Lorem saa red amet. Ipsum is Lorem Ipsum dwd Lorem Ipsum is Lorem saa red amet. Ipsum is Lorem Ipsum dwd Lorem Ipsum is Lorem saa red amet.",
+      "I created institutional websites and landing pages, from gathering requirements and designing prototypes in Figma to development using WordPress CMS after approval.",
+  },
+];
+
+export const certifications = [
+  {
+    status: "Completed in 2021",
+    educationName: "React | Certificate of Authority",
+    institutionName: "DevMedia",
+    credentialLink:
+      "https://www.devmedia.com.br/certificado/tecnologia/react/jhonatan-91",
   },
   {
-    period: {
-      start: "01-02-2020",
-      end: "20-08-2020",
-    },
-    companyName: "Another Company",
-    position: "Other Position",
-    country: "Brazil",
-    description: "Lorem Ipsum is Lorem Ipsum is Lorem Ipsum dwd saa red amet.",
+    status: "Completed in 2021",
+    educationName: "React | Creating my First Routes",
+    institutionName: "DevMedia",
+    credentialLink: "http://www.devmedia.com.br/cert/?id=112081",
+  },
+  {
+    status: "Completed in 2021",
+    educationName: "React | State Hooks and onClick event",
+    institutionName: "DevMedia",
+    credentialLink: "http://www.devmedia.com.br/cert/?id=112024",
+  },
+  {
+    status: "Completed in 2021",
+    educationName: "React | Creating my First Components",
+    institutionName: "DevMedia",
+    credentialLink: "http://www.devmedia.com.br/cert/?id=111937",
+  },
+  {
+    status: "Completed in 2021",
+    educationName: "Front-end Programmer | Introduction",
+    institutionName: "DevMedia",
+    credentialLink: "https://www.devmedia.com.br/cursos/certificado/?id=111908",
+  },
+  {
+    status: "Completed in 2021",
+    educationName: "More Techniques and Good Practices",
+    institutionName: "Alura",
+    credentialLink:
+      "https://www.devmedia.com.br/certificado/tecnologia/react/jhonatan-91",
+  },
+  {
+    status: "Completed in 2021",
+    educationName: "TypeScript | Advancing the Language",
+    institutionName: "Alura",
+    credentialLink:
+      "https://cursos.alura.com.br/certificate/d047ed8d-9f7b-44af-9cdc-c053fcf1c60f",
+  },
+  {
+    status: "Completed in 2021",
+    educationName: "TypeScript | Evolving your JavaScript",
+    institutionName: "Alura",
+    credentialLink:
+      "https://cursos.alura.com.br/certificate/167ceaee-295a-4fa5-95fc-cd53b1eff358",
+  },
+  {
+    status: "Completed in 2021",
+    educationName: "Introduction to Git and GitHub",
+    institutionName: "DIO",
+    credentialLink: "https://certificates.digitalinnovation.one/217CC25C",
+  },
+  {
+    status: "Completed in 2021",
+    educationName: "Essential Programming Logic",
+    institutionName: "DIO",
+    credentialLink: "https://certificates.digitalinnovation.one/F3C61B02",
+  },
+  {
+    status: "Completed in 2021",
+    educationName: "JavaScript",
+    institutionName: "B7Web",
+    credentialLink:
+      "https://alunos.b7web.com.br/media/certificates/certificado_9988957.jpg",
+  },
+  {
+    status: "Completed in 2020",
+    educationName: "Git/GitHub",
+    institutionName: "B7Web",
+    credentialLink:
+      "https://alunos.b7web.com.br/media/certificates/certificado_9665643.jpg",
+  },
+  {
+    status: "Completed in 2020",
+    educationName: "HTML5 & CSS3",
+    institutionName: "B7Web",
+    credentialLink:
+      "https://alunos.b7web.com.br/media/certificates/certificado_2730535.jpg",
+  },
+  {
+    status: "Completed in 2011",
+    educationName: "Assembly and maintenance of computers and networks",
+    institutionName: "Microlins",
+  },
+  {
+    status: "Completed in 2011",
+    educationName: "Assembly and maintenance of computers and networks",
+    institutionName: "Microlins",
   },
 ];
