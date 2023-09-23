@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { useState } from "react";
 import styled, { css } from "styled-components";
 
 interface EducationCardProps {
@@ -16,13 +17,19 @@ export function EducationCard({
   type = "primary",
   credentialLink,
 }: EducationCardProps) {
+  const [isMouseHover, setIsMouseHover] = useState(false);
+
   return (
-    <EducationCardContainer type={type}>
+    <EducationCardContainer
+      type={type}
+      onMouseEnter={() => setIsMouseHover(true)}
+      onMouseLeave={() => setIsMouseHover(false)}
+    >
       <span className="status">{status}</span>
       <span className="education-name">{educationName}</span>
       <div className="institution-and-credential-btn">
         <span className="institution-name">by {institutionName}</span>
-        {credentialLink && (
+        {isMouseHover && credentialLink && (
           <Link href={credentialLink} target="_blank">
             Show credential
           </Link>
@@ -75,6 +82,8 @@ const EducationCardContainer = styled.div<{ type: "primary" | "secondary" }>`
   .institution-and-credential-btn {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    height: 2rem;
 
     a {
       padding: 0.5rem;
