@@ -7,6 +7,7 @@ export const GlobalStyles = createGlobalStyle`
         --white: ${({ theme }) => theme["--white"]};
         --gray-100: ${({ theme }) => theme["--gray-100"]};
         --gray-500: ${({ theme }) => theme["--gray-500"]};
+        --gray-600: ${({ theme }) => theme["--gray-600"]};
         --gray-800: ${({ theme }) => theme["--gray-800"]};
         --bg-linear-1: ${({ theme }) => theme["--bg-linear-1"]};
         --bg-linear-2: ${({ theme }) => theme["--bg-linear-2"]};

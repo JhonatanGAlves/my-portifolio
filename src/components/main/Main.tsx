@@ -21,7 +21,7 @@ export default function Main({ children }: MainProps) {
       </Link>
       <MainContent>
         <PageContent>{children}</PageContent>
-        <SocialMedia>
+        <SocialMedia className="social-media-fixed">
           <Link
             href={"https://www.linkedin.com/in/jhonatan-alves-11b28015b/"}
             target="_blank"

@@ -152,7 +152,30 @@ export const certifications = [
   },
   {
     status: "Completed in 2011",
-    educationName: "Assembly and maintenance of computers and networks",
+    educationName: "Computer Operator",
     institutionName: "Microlins",
+  },
+];
+
+export const socialMedia = [
+  {
+    mediaName: "LinkedIn",
+    href: "https://www.linkedin.com/in/jhonatan-alves-11b28015b/",
+  },
+  {
+    mediaName: "GitHub",
+    href: "https://github.com/JhonatanGAlves",
+  },
+  {
+    mediaName: "Instagram",
+    href: "https://www.instagram.com/jhonatangalves/",
+  },
+  {
+    mediaName: "Mail",
+    href: "mailto:jhonatagalves96@gmail.com",
+  },
+  {
+    mediaName: "WhatsApp",
+    href: "https://www.linkedin.com/in/jhonatan-alves-11b28015b/",
   },
 ];
