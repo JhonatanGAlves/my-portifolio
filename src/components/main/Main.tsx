@@ -70,6 +70,15 @@ const MainContainer = styled.main`
     &:hover {
       left: -110px;
     }
+
+    @media screen and (max-width: 420px) {
+      display: none !important;
+    }
+  }
+
+  @media screen and (max-width: 420px) {
+    padding-left: 1.25rem !important;
+    padding-right: 1.25rem !important;
   }
 `;
 
@@ -80,6 +89,11 @@ const MainContent = styled.div`
   border-width: 1px;
   border-style: solid;
   border-image: linear-gradient(var(--gray-500), rgba(130, 129, 135, 0)) 30;
+
+  @media screen and (max-width: 420px) {
+    padding: 0 1rem !important;
+    position: relative !important;
+  }
 `;
 
 const PageContent = styled.div``;
@@ -98,5 +112,11 @@ const SocialMedia = styled.div`
     &:hover {
       color: var(--detail);
     }
+  }
+
+  @media screen and (max-width: 420px) {
+    bottom: 0 !important;
+    position: absolute !important;
+    left: -16px !important;
   }
 `;

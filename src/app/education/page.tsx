@@ -32,8 +32,8 @@ export default function EducationPage() {
     return exactPeriod;
   }
 
-  function hundleRisize() {
-    if (window.innerWidth < 720) {
+  function handleResize() {
+    if (window.innerWidth < 769) {
       setSlidePerView(1);
     } else {
       setSlidePerView(3);
@@ -41,10 +41,10 @@ export default function EducationPage() {
   }
 
   useEffect(() => {
-    window.addEventListener("resize", hundleRisize);
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener("resize", hundleRisize);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 

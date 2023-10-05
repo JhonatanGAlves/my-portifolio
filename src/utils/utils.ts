@@ -4,6 +4,7 @@ export function getExperienceAndWidth(initialDate: Date): {
   experience: number;
   width: number;
 } {
+  const currentScreenWidth = window.innerWidth;
   const currentDate = new Date();
   const differenceInMilliseconds =
     currentDate.getTime() - initialDate.getTime();
@@ -14,13 +15,13 @@ export function getExperienceAndWidth(initialDate: Date): {
   ).toFixed(2);
 
   // Handle with the width
-  const pixelsPerIncrement = 75;
+  const pixelsPerIncrement = currentScreenWidth < 421 ? 25 : 75;
 
-  const width = Math.floor(Number(yearsOfExperience) * 2) * pixelsPerIncrement; // Each 0.5 years of experience, width will be 75px, therefore 1 year of experience, width will be 150px
+  const width = Math.floor(Number(yearsOfExperience) * 2) * pixelsPerIncrement; // Each 0.5 years of experience, width will be 75px (25px on mobile), therefore 1 year of experience, width will be 150px
 
   const experienceAndWidth = {
     experience: Math.floor(Number(yearsOfExperience)),
-    width: (width === 0 ? 75 : width) / 16, // 1rem equals 16px
+    width: (width === 0 ? pixelsPerIncrement : width) / 16, // 1rem equals 16px
   };
 
   return experienceAndWidth;

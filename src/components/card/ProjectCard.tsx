@@ -83,6 +83,11 @@ const Card = styled.div`
     overflow: hidden;
     text-overflow: ellipsis;
   }
+
+  @media screen and (max-width: 420) {
+    border-radius: 8px;
+    background-color: var(--gray-800);
+  }
 `;
 
 const ImageCard = styled.div`
@@ -98,6 +103,10 @@ const DescriptionCard = styled.div`
 
   h2 {
     text-transform: capitalize;
+  }
+
+  @media screen and (max-width: 420px) {
+    padding: 0 1rem 1rem;
   }
 `;
 

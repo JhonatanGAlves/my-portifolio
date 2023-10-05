@@ -27,9 +27,9 @@ export const mainExperiences = [
     alt: "NodeJS Icon",
     tool: "NodeJS",
     howLongAndWidth:
-      getExperienceAndWidth(new Date(2023, 1, 1)).experience === 0
-        ? { ...getExperienceAndWidth(new Date(2023, 1, 1)), experience: 1 }
-        : getExperienceAndWidth(new Date(2023, 1, 1)), // 2023/02/01
+      getExperienceAndWidth(new Date(2023, 5, 1)).experience === 0
+        ? { ...getExperienceAndWidth(new Date(2023, 5, 1)), experience: 1 }
+        : getExperienceAndWidth(new Date(2023, 5, 1)), // 2023/06/01
     image: nodeIcon,
   },
 ];

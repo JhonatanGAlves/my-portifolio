@@ -11,9 +11,9 @@ export default function Flag({ currentTheme, width }: FlagProps) {
   return (
     <>
       {currentTheme === "dark" ? (
-        <Image alt="dark icon" src={usaDarkFlag} width={30} />
+        <Image alt="dark icon" src={usaDarkFlag} width={width} />
       ) : (
-        <Image alt="light icon" src={usaLightFlag} width={30} />
+        <Image alt="light icon" src={usaLightFlag} width={width} />
       )}
     </>
   );

@@ -59,6 +59,29 @@ const HomeContainer = styled.div`
     right: 0;
     bottom: 0;
   }
+
+  @media screen and (max-width: 1134px) {
+    .jhonatan-alves-image {
+      display: none;
+    }
+  }
+
+  @media screen and (min-width: 1135px) and (max-width: 1271px) {
+    .jhonatan-alves-image {
+      width: 450px;
+    }
+  }
+
+  @media screen and (min-width: 1270px) and (max-width: 1370px) {
+    .jhonatan-alves-image {
+      width: 600px;
+    }
+  }
+
+  @media screen and (max-width: 420px) {
+    height: initial;
+    gap: 0;
+  }
 `;
 
 const Phrase = styled.h1`
@@ -69,6 +92,22 @@ const Phrase = styled.h1`
     font-size: 2rem;
     font-weight: 300;
   }
+
+  @media screen and (max-width: 420px) {
+    text-align: center;
+    font-size: 3rem;
+    line-height: 2.5rem;
+    padding: 3rem 0;
+
+    span {
+      font-size: 1.5rem;
+      line-height: 1rem;
+    }
+  }
+
+  @media screen and (min-width: 422px) and (max-width: 1024px) {
+    text-align: center;
+  }
 `;
 
 const MyExperiences = styled.div`
@@ -78,6 +117,12 @@ const MyExperiences = styled.div`
 
   h3 {
     font-size: 1.25rem;
+  }
+
+  @media screen and (max-width: 420px) {
+    h3 {
+      align-self: center;
+    }
   }
 `;
 
@@ -110,5 +155,9 @@ const DownloadButton = styled.a`
   &:hover {
     color: var(--gray-800);
     background-color: var(--detail);
+  }
+
+  @media screen and (max-width: 420px) {
+    margin: 2rem auto;
   }
 `;
