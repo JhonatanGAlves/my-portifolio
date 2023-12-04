@@ -4,7 +4,7 @@ import { mainExperiences } from "@/mock/mock";
 import { styled } from "styled-components";
 import { AiOutlineDownload } from "react-icons/ai";
 import Image from "next/image";
-import jhonatanAlvesBgImage from "../assets/photo-bg.svg";
+import jhonatanAlvesBgImage from "../../assets/photo-bg.svg";
 
 export default function App() {
   return (

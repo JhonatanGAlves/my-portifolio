@@ -8,12 +8,12 @@ import { FaLongArrowAltDown, FaLongArrowAltUp } from "react-icons/fa";
 
 import ProjectCard from "@/components/card/ProjectCard";
 import useProjects from "@/hooks/useProjects";
-import joystickImage from "../../assets/joystick.png";
 import { ProjectTypes } from "@/types/types";
 import { ToolFilter } from "./tool-filter/ToolFilter";
 
 export default function ProjectsPage() {
-  const [alteredProjects, setAlteredProjects] = useState<ProjectTypes[]>([]);
+  const [alteredProjects, setAlteredProjects] = useState<ProjectTypes[]>(
+    []
   const [sortBy, setSortBy] = useState("name");
   const [activeSort, setActiveSort] = useState("name");
   const [sortDirection, setSortDirection] = useState("desc");
@@ -132,7 +132,6 @@ export default function ProjectsPage() {
               projectName={project.name}
               description={project.description}
               url={project.html_url}
-              image={joystickImage}
               createdAt={project.created_at}
               tools={project.tools}
               topics={project.topics}
@@ -177,6 +176,14 @@ const TitleAndParagraph = styled.div`
         opacity: 0.6;
         text-decoration: underline;
       }
+    }
+  }
+
+  @media screen and (max-width: 420px) {
+    width: fit-content;
+
+    h1 {
+      font-size: 2rem;
     }
   }
 `;
@@ -233,4 +240,8 @@ const ProjectsContent = styled.div`
   display: grid;
   grid-template-columns: 19.875rem 19.875rem 19.875rem;
   gap: 3rem;
+
+  @media screen and (max-width: 420px) {
+    grid-template-columns: 32rem;
+  }
 `;

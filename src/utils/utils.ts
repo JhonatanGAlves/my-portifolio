@@ -103,3 +103,7 @@ export const TOOLS = [
   "SCSS",
   "PHP",
 ];
+
+export function isSelectedLanguage(locale: string, pathName: string): boolean {
+  return `/${locale}` === pathName;
+}

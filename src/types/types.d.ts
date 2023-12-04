@@ -22,3 +22,22 @@ export type SelectOptions = {
   value: string;
   label: string;
 };
+
+export type PortfolioData = {
+  header: I18nHeaderTypes;
+  home: I18nHomeTypes;
+};
+
+export type I18nHeaderTypes = {
+  dark: string;
+  light: string;
+
+  home: string;
+  projects: string;
+  experiences: string;
+  contact: string;
+};
+
+export type I18nHomeTypes = {
+  "Hello World": string;
+};

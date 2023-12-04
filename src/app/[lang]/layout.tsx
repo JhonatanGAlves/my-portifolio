@@ -1,6 +1,6 @@
 import { Source_Code_Pro } from "next/font/google";
-import Header from "../components/header/Header";
-import StyledComponentsRegistry from "../lib/styledComponentsRegistry";
+import Header from "../../components/header/Header";
+import StyledComponentsRegistry from "../../lib/styledComponentsRegistry";
 import { GlobalStyles } from "@/styles/global";
 import PortfolioProvider from "@/context/PortfolioContext";
 import Main from "@/components/main/Main";

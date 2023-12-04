@@ -183,6 +183,10 @@ const ToolFilterDropdown = styled.ul`
 
   background-color: var(--gray-800);
 
+  @media screen and (max-width: 420px) {
+    right: 0;
+  }
+
   li {
     &:hover,
     &.selected {

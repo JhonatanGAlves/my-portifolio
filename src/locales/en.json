@@ -1,0 +1,13 @@
+{
+  "header": {
+    "dark": "Dark",
+    "light": "Light",
+    "home": "Home",
+    "projects": "Projects",
+    "experiences": "experiences",
+    "contact": "Contact"
+  },
+  "home": {
+    "Hello World": "Hello World"
+  }
+}

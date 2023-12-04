@@ -1,0 +1,13 @@
+{
+  "header": {
+    "dark": "Escuro",
+    "light": "Claro",
+    "home": "Início",
+    "projects": "Projetos",
+    "experiences": "Experiências",
+    "contact": "Contato"
+  },
+  "home": {
+    "Hello World": "Olá Mundo"
+  }
+}
