@@ -1,69 +1,24 @@
 "use client";
 
-import { css, styled } from "styled-components";
+import { styled } from "styled-components";
 import { FaGraduationCap, FaHome, FaLaptopCode } from "react-icons/fa";
-import { AiOutlineMenu, AiOutlineMessage } from "react-icons/ai";
+import { AiOutlineMessage } from "react-icons/ai";
 import Link from "next/link";
 import { useContext, useState } from "react";
 import { PortfolioContext } from "@/context/PortfolioContext";
 import { Badge } from "../badge/Badge";
 import ThemeIcon from "../theme-icon/ThemeIcon";
 import SwitchLanguage from "../switches/language/SwitchLanguage";
+import HeaderMobile from "./mobile/HeaderMobile";
 
 export default function Header() {
   const { theme, setTheme, pathName } = useContext(PortfolioContext);
   const [activeBadge, setActiveBadge] = useState("home");
-  const [showDropdownMenu, setShowDropdownMenu] = useState(false);
 
   const isCellPhoneScreen = window.innerWidth < 421;
 
   return isCellPhoneScreen ? (
-    <CellPhoneHeaderContainer isDropdownMenuOpen={showDropdownMenu}>
-      <AiOutlineMenu
-        size={24}
-        onClick={() => setShowDropdownMenu((prevState) => !prevState)}
-      />
-      <DropdownMenu show={showDropdownMenu}>
-        <ul>
-          <>
-            <Link href={"/"} onClick={() => setShowDropdownMenu(false)}>
-              <li>Home</li>
-            </Link>
-            <Link href={"/projects"} onClick={() => setShowDropdownMenu(false)}>
-              <li>Projects</li>
-            </Link>
-            <Link
-              href={"/education"}
-              onClick={() => setShowDropdownMenu(false)}
-            >
-              <li>Education</li>
-            </Link>
-            <Link href={"/contact"} onClick={() => setShowDropdownMenu(false)}>
-              <li>Contact</li>
-            </Link>
-          </>
-        </ul>
-        <div className="divisor" />
-        <LanguageAndTheme>
-          <SwitchLanguage theme={theme} />
-          <SwitchTheme isDarkTheme={theme === "dark"}>
-            <div className="labels">
-              <button className="dark-button" onClick={() => setTheme("dark")}>
-                Dark
-              </button>{" "}
-              |{" "}
-              <button
-                className="light-button"
-                onClick={() => setTheme("light")}
-              >
-                Light
-              </button>
-            </div>
-            <ThemeIcon currentTheme={theme} width={30} />
-          </SwitchTheme>
-        </LanguageAndTheme>
-      </DropdownMenu>
-    </CellPhoneHeaderContainer>
+    <HeaderMobile theme={theme} setTheme={setTheme} />
   ) : (
     <HeaderContainer>
       <HeaderContent>
@@ -194,65 +149,4 @@ const SwitchTheme = styled.div<{ isDarkTheme: boolean }>`
     color: ${({ isDarkTheme }) =>
       !isDarkTheme ? "var(--detail)" : "var(--gray-100)"};
   }
-`;
-
-// CELL PHONE
-const CellPhoneHeaderContainer = styled.header<{ isDropdownMenuOpen: boolean }>`
-  display: flex;
-  justify-content: flex-end;
-
-  padding: 1.5rem 1.25rem;
-
-  ${({ isDropdownMenuOpen }) =>
-    isDropdownMenuOpen &&
-    css`
-      svg {
-        color: var(--detail);
-      }
-    `}
-`;
-
-const DropdownMenu = styled.div<{ show: boolean }>`
-  display: ${({ show }) => (show ? "flex" : "none")};
-  flex-direction: column;
-  gap: 10px;
-  padding: 1rem;
-
-  position: absolute;
-  top: 50px;
-  z-index: 1;
-
-  border-radius: 4px;
-  border: 1px solid var(--detail);
-
-  background-color: var(--gray-800);
-
-  ul {
-    display: flex;
-    flex-direction: column;
-    align-self: flex-end;
-
-    list-style: none;
-    gap: 8px;
-
-    a {
-      text-decoration: none;
-      font-weight: 700;
-      color: var(--gray-100);
-    }
-  }
-
-  .divisor {
-    height: 1px;
-    border-radius: 1px;
-    margin: 0.5rem 0;
-    background-color: var(--detail);
-  }
-`;
-
-const LanguageAndTheme = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 8px;
 `;

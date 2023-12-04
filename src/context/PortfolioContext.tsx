@@ -2,6 +2,7 @@
 
 import React, {
   ReactNode,
+  SetStateAction,
   createContext,
   useEffect,
   useMemo,
@@ -12,8 +13,7 @@ import { usePathname } from "next/navigation";
 
 import { ThemeProvider } from "styled-components";
 import { darkMode, lightMode } from "@/theme/theme";
-
-type ThemeTypes = "dark" | "light";
+import { ThemeTypes } from "@/types/types";
 
 interface PortfolioProps {
   children: ReactNode;
@@ -21,7 +21,7 @@ interface PortfolioProps {
 
 interface PortfolioContextProps {
   theme: ThemeTypes;
-  setTheme(theme: ThemeTypes): void;
+  setTheme(value: SetStateAction<ThemeTypes>): void;
   pathName: string;
 }
 
