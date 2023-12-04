@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { styled } from "styled-components";
 import Image from "next/image";
+import { I18nHomeTypes } from "@/types/i18n";
 
 interface ExperienceProgressProps {
   alt: string;
@@ -10,6 +11,7 @@ interface ExperienceProgressProps {
   howLong: number;
   width: number;
   index: number;
+  i18nHome: I18nHomeTypes;
 }
 
 export default function ExperienceProgress({
@@ -19,6 +21,7 @@ export default function ExperienceProgress({
   howLong,
   width,
   index,
+  i18nHome,
 }: ExperienceProgressProps) {
   const [widthAfterTimeout, setWidthAfterTimeout] = useState(0);
 
@@ -36,7 +39,11 @@ export default function ExperienceProgress({
       <Image alt={alt} src={src} width={size} />
       <ProgressBar width={widthAfterTimeout} />
       {widthAfterTimeout !== 0 && (
-        <p>{`${howLong > 1 ? `+${howLong} years` : `-${howLong} year`}`}</p>
+        <p>{`${
+          howLong > 1
+            ? `+${howLong} ${i18nHome.years}`
+            : `-${howLong} ${i18nHome.year}`
+        }`}</p>
       )}
     </ProgressContainer>
   );

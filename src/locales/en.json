@@ -4,10 +4,15 @@
     "light": "Light",
     "home": "Home",
     "projects": "Projects",
-    "experiences": "experiences",
+    "education": "Education",
     "contact": "Contact"
   },
   "home": {
-    "Hello World": "Hello World"
+    "hi": "Hi, I am",
+    "softwareDeveloper": "I’m a Software Developer.",
+    "mainExperiences": "My main experiences:",
+    "year": "year",
+    "years": "years",
+    "download": "Download CV"
   }
 }

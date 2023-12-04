@@ -8,6 +8,11 @@
     "contact": "Contato"
   },
   "home": {
-    "Hello World": "Olá Mundo"
+    "hi": "Olá, eu sou",
+    "softwareDeveloper": "Sou um Desenvolvedor de Software.",
+    "mainExperiences": "Minhas principais experiências:",
+    "year": "ano",
+    "years": "anos",
+    "download": "Baixar CV"
   }
 }
