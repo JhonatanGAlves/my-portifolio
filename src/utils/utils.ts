@@ -105,5 +105,5 @@ export const TOOLS = [
 ];
 
 export function isSelectedLanguage(locale: string, pathName: string): boolean {
-  return `/${locale}` === pathName;
+  return `/${locale}` === `/${pathName.split("/")[1]}`;
 }

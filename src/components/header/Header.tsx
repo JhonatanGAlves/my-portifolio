@@ -1,19 +1,19 @@
 "use client";
+import { useContext } from "react";
+
+import Link from "next/link";
 
 import { styled } from "styled-components";
-import { FaGraduationCap, FaHome, FaLaptopCode } from "react-icons/fa";
-import { AiOutlineMessage } from "react-icons/ai";
-import Link from "next/link";
-import { useContext, useState } from "react";
+
 import { PortfolioContext } from "@/context/PortfolioContext";
 import { Badge } from "../badge/Badge";
 import ThemeIcon from "../theme-icon/ThemeIcon";
 import SwitchLanguage from "../switches/language/SwitchLanguage";
 import HeaderMobile from "./mobile/HeaderMobile";
+import { getPageNavOptions } from "@/helper/helper";
 
 export default function Header() {
   const { theme, setTheme, pathName } = useContext(PortfolioContext);
-  const [activeBadge, setActiveBadge] = useState("home");
 
   const isCellPhoneScreen = window.innerWidth < 421;
 
@@ -25,46 +25,16 @@ export default function Header() {
         <SwitchLanguage theme={theme} />
         <Nav>
           <ul>
-            <Badge message="home" activeBadge={activeBadge}>
-              <Link href={pathName} onClick={() => setActiveBadge("home")}>
-                <li>
-                  <FaHome size={30} />
-                </li>
-              </Link>
-            </Badge>
-            <Badge message="projects" activeBadge={activeBadge}>
-              <Link
-                href={`${pathName}/projects`}
-                onClick={() => setActiveBadge("projects")}
-              >
-                <li>
-                  <FaLaptopCode size={30} />
-                </li>
-              </Link>
-            </Badge>
-            <Badge message="education" activeBadge={activeBadge}>
-              <Link
-                href={`${pathName}/education`}
-                onClick={() => setActiveBadge("education")}
-              >
-                <li>
-                  <FaGraduationCap size={30} />
-                </li>
-              </Link>
-            </Badge>
-            <Badge message="contact" activeBadge={activeBadge}>
-              <Link
-                href={`${pathName}/contact`}
-                onClick={() => setActiveBadge("contact")}
-              >
-                <li>
-                  <AiOutlineMessage size={30} />
-                </li>
-              </Link>
-            </Badge>
+            {getPageNavOptions(pathName).map((page) => (
+              <Badge key={page.pageName} message={page.pageName}>
+                <Link href={page.href}>
+                  <li>{page.icon}</li>
+                </Link>
+              </Badge>
+            ))}
           </ul>
         </Nav>
-        <SwitchTheme isDarkTheme={theme === "dark"}>
+        <SwitchTheme $isDarkTheme={theme === "dark"}>
           <div className="labels">
             <button className="dark-button" onClick={() => setTheme("dark")}>
               Dark
@@ -123,7 +93,7 @@ const Nav = styled.nav`
   }
 `;
 
-const SwitchTheme = styled.div<{ isDarkTheme: boolean }>`
+const SwitchTheme = styled.div<{ $isDarkTheme: boolean }>`
   display: flex;
   align-items: center;
   gap: 12px;
@@ -142,11 +112,11 @@ const SwitchTheme = styled.div<{ isDarkTheme: boolean }>`
   }
 
   .dark-button {
-    color: ${({ isDarkTheme }) =>
-      isDarkTheme ? "var(--detail)" : "var(--gray-100)"};
+    color: ${({ $isDarkTheme }) =>
+      $isDarkTheme ? "var(--detail)" : "var(--gray-100)"};
   }
   .light-button {
-    color: ${({ isDarkTheme }) =>
-      !isDarkTheme ? "var(--detail)" : "var(--gray-100)"};
+    color: ${({ $isDarkTheme }) =>
+      !$isDarkTheme ? "var(--detail)" : "var(--gray-100)"};
   }
 `;

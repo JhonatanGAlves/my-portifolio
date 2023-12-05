@@ -16,7 +16,7 @@ export default function useFlag(
   const [flag, setFlag] = useState<any>();
 
   useEffect(() => {
-    if (pathName === "/en") {
+    if (pathName.includes("/en")) {
       if (theme === "dark") {
         setFlag(usaDarkFlag);
       } else {

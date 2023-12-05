@@ -6,27 +6,32 @@ import { css, styled } from "styled-components";
 
 interface BadgeProps {
   message: string;
-  activeBadge: string;
   children: ReactNode;
 }
 
-export function Badge({ message, activeBadge, children }: BadgeProps) {
-  const [showBadgeMessage, setShowBadgeMessage] = useState("home");
-  const { theme } = useContext(PortfolioContext);
+export function Badge({ message, children }: BadgeProps) {
+  const [showBadgeMessage, setShowBadgeMessage] = useState("");
+  const { theme, pathName } = useContext(PortfolioContext);
 
-  const isActive = activeBadge === message;
+  const isActive =
+    pathName.includes(message) ||
+    (pathName === `/${pathName.split("/")[1]}` && message === "home");
   const isHover = showBadgeMessage === message;
 
   return (
     <BadgeContainer>
-      <BadgeMessage isActive={isActive} isHover={isHover} currentTheme={theme}>
+      <BadgeMessage
+        $isActive={isActive}
+        $isHover={isHover}
+        $currentTheme={theme}
+      >
         {message}
       </BadgeMessage>
       <ElementContent
         onMouseEnter={() => setShowBadgeMessage(message)}
         onMouseLeave={() => setShowBadgeMessage("")}
-        isActive={isActive}
-        currentTheme={theme}
+        $isActive={isActive}
+        $currentTheme={theme}
       >
         {children}
       </ElementContent>
@@ -42,13 +47,13 @@ const BadgeContainer = styled.div`
 `;
 
 const BadgeMessage = styled.div<{
-  isActive: boolean;
-  isHover: boolean;
-  currentTheme: string;
+  $isActive: boolean;
+  $isHover: boolean;
+  $currentTheme: string;
 }>`
-  ${({ isActive, isHover }) =>
-    !isActive &&
-    !isHover &&
+  ${({ $isActive, $isHover }) =>
+    !$isActive &&
+    !$isHover &&
     css`
       display: none;
     `}
@@ -61,21 +66,24 @@ const BadgeMessage = styled.div<{
 
   text-transform: capitalize;
 
-  color: ${({ isActive, currentTheme }) =>
-    isActive
+  color: ${({ $isActive, $currentTheme }) =>
+    $isActive
       ? "var(--gray-800)"
-      : currentTheme === "dark"
+      : $currentTheme === "dark"
       ? "#828187"
       : "#e1e1e1"};
-  background-color: ${({ isActive, currentTheme }) =>
-    isActive
+  background-color: ${({ $isActive, $currentTheme }) =>
+    $isActive
       ? "var(--detail)"
-      : currentTheme === "dark"
+      : $currentTheme === "dark"
       ? "#1d1d1d"
       : "#828187"};
 `;
 
-const ElementContent = styled.div<{ isActive: boolean; currentTheme: string }>`
+const ElementContent = styled.div<{
+  $isActive: boolean;
+  $currentTheme: string;
+}>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -84,19 +92,19 @@ const ElementContent = styled.div<{ isActive: boolean; currentTheme: string }>`
 
   border-radius: 50%;
 
-  background-color: ${({ isActive, currentTheme }) =>
-    isActive
+  background-color: ${({ $isActive, $currentTheme }) =>
+    $isActive
       ? "var(--detail)"
-      : currentTheme === "dark"
+      : $currentTheme === "dark"
       ? "#1d1d1d"
       : "#828187"};
 
   svg {
     margin: auto;
-    color: ${({ isActive, currentTheme }) =>
-      isActive
+    color: ${({ $isActive, $currentTheme }) =>
+      $isActive
         ? "var(--gray-800)"
-        : currentTheme === "dark"
+        : $currentTheme === "dark"
         ? "#828187"
         : "#e1e1e1"};
   }
