@@ -8,13 +8,26 @@ import { AiOutlineMenu } from "react-icons/ai";
 import SwitchLanguage from "@/components/switches/language/SwitchLanguage";
 import ThemeIcon from "@/components/theme-icon/ThemeIcon";
 import { ThemeTypes } from "@/types/types";
+import { I18nHeaderTypes } from "@/types/i18n";
+import {
+  convertMessageToEnglish,
+  getActivePage,
+  getPageNavOptions,
+} from "@/helper/helper";
 
 interface HeaderMobileProps {
   theme: ThemeTypes;
   setTheme: (value: SetStateAction<ThemeTypes>) => void;
+  pathName: string;
+  i18nHeader: I18nHeaderTypes;
 }
 
-export default function HeaderMobile({ theme, setTheme }: HeaderMobileProps) {
+export default function HeaderMobile({
+  theme,
+  setTheme,
+  pathName,
+  i18nHeader,
+}: HeaderMobileProps) {
   const [showDropdownMenu, setShowDropdownMenu] = useState(false);
 
   return (
@@ -25,27 +38,32 @@ export default function HeaderMobile({ theme, setTheme }: HeaderMobileProps) {
       />
       <DropdownMenu show={showDropdownMenu}>
         <ul>
-          <>
-            <Link href={"/"} onClick={() => setShowDropdownMenu(false)}>
-              <li>Home</li>
-            </Link>
-            <Link href={"/projects"} onClick={() => setShowDropdownMenu(false)}>
-              <li>Projects</li>
-            </Link>
-            <Link
-              href={"/education"}
-              onClick={() => setShowDropdownMenu(false)}
-            >
-              <li>Education</li>
-            </Link>
-            <Link href={"/contact"} onClick={() => setShowDropdownMenu(false)}>
-              <li>Contact</li>
-            </Link>
-          </>
+          {getPageNavOptions(pathName, i18nHeader).map((page) => {
+            const convertedPageNameToEnglish = convertMessageToEnglish(
+              page.pageName.toLowerCase()
+            );
+            const isActive = getActivePage(
+              pathName,
+              convertedPageNameToEnglish
+            );
+
+            return (
+              <Link
+                key={page.pageName}
+                href={page.href}
+                style={{
+                  color: isActive ? "var(--detail)" : "var(--gray-100)",
+                }}
+                onClick={() => setShowDropdownMenu(false)}
+              >
+                <li>{page.pageName}</li>
+              </Link>
+            );
+          })}
         </ul>
         <div className="divisor" />
         <LanguageAndTheme>
-          <SwitchLanguage theme={theme} />
+          <SwitchLanguage theme={theme} width={25} imagePosition="right" />
           <SwitchTheme isDarkTheme={theme === "dark"}>
             <div className="labels">
               <button className="dark-button" onClick={() => setTheme("dark")}>

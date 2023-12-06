@@ -11,9 +11,15 @@ import { i18n } from "../../../../i18n.config";
 
 interface SwitchLanguageProps {
   theme: "dark" | "light";
+  width?: number;
+  imagePosition?: "left" | "right";
 }
 
-export default function SwitchLanguage({ theme }: SwitchLanguageProps) {
+export default function SwitchLanguage({
+  theme,
+  width = 40,
+  imagePosition = "left",
+}: SwitchLanguageProps) {
   const pathName = usePathname();
   const { flag } = useFlag(pathName, theme);
 
@@ -27,12 +33,14 @@ export default function SwitchLanguage({ theme }: SwitchLanguageProps) {
   return (
     flag && (
       <Languages>
-        <Image
-          src={flag}
-          alt="Image flag from language mode"
-          width={40}
-          height={40}
-        />
+        {imagePosition === "left" && (
+          <Image
+            src={flag}
+            alt="Image flag from language mode"
+            width={width}
+            height={width}
+          />
+        )}
         <div className="labels">
           {i18n.locales.map((locale) => (
             <Link
@@ -49,6 +57,14 @@ export default function SwitchLanguage({ theme }: SwitchLanguageProps) {
             </Link>
           ))}
         </div>
+        {imagePosition === "right" && (
+          <Image
+            src={flag}
+            alt="Image flag from language mode"
+            width={width}
+            height={width}
+          />
+        )}
       </Languages>
     )
   );

@@ -41,3 +41,26 @@ export function getPageNavOptions(
 
   return pageNavOptions;
 }
+
+export function getActivePage(pathName: string, message: string) {
+  return (
+    pathName.toLowerCase().includes(message) ||
+    (pathName.toLowerCase() === `/${pathName.toLowerCase().split("/")[1]}` &&
+      message === "home")
+  );
+}
+
+export function convertMessageToEnglish(message: string): string {
+  switch (message) {
+    case "início":
+      return "home";
+    case "projetos":
+      return "projects";
+    case "experiências":
+      return "experiences";
+    case "contato":
+      return "contact";
+    default:
+      return message;
+  }
+}

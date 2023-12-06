@@ -3,6 +3,7 @@
 import { ReactNode, useContext, useState } from "react";
 import { PortfolioContext } from "@/context/PortfolioContext";
 import { css, styled } from "styled-components";
+import { convertMessageToEnglish, getActivePage } from "@/helper/helper";
 
 interface BadgeProps {
   message: string;
@@ -13,28 +14,10 @@ export function Badge({ message, children }: BadgeProps) {
   const [showBadgeMessage, setShowBadgeMessage] = useState("");
   const { theme, pathName } = useContext(PortfolioContext);
 
-  const convertedMessageToEnglish = convertToEnglish(message);
+  const convertedMessageToEnglish = convertMessageToEnglish(message);
 
-  const isActive =
-    pathName.toLowerCase().includes(convertedMessageToEnglish) ||
-    (pathName.toLowerCase() === `/${pathName.toLowerCase().split("/")[1]}` &&
-      convertedMessageToEnglish === "home");
+  const isActive = getActivePage(pathName, convertedMessageToEnglish);
   const isHover = showBadgeMessage === convertedMessageToEnglish;
-
-  function convertToEnglish(message: string): string {
-    switch (message) {
-      case "início":
-        return "home";
-      case "projetos":
-        return "projects";
-      case "experiências":
-        return "experiences";
-      case "contato":
-        return "contact";
-      default:
-        return message;
-    }
-  }
 
   return (
     <BadgeContainer>
