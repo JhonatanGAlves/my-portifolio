@@ -11,7 +11,7 @@ export type I18nHeaderTypes = {
   nav: {
     home: string;
     projects: string;
-    education: string;
+    experiences: string;
     contact: string;
   };
 };

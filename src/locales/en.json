@@ -1,11 +1,15 @@
 {
   "header": {
-    "dark": "Dark",
-    "light": "Light",
-    "home": "Home",
-    "projects": "Projects",
-    "education": "Education",
-    "contact": "Contact"
+    "theme": {
+      "dark": "Dark",
+      "light": "Light"
+    },
+    "nav": {
+      "home": "Home",
+      "projects": "Projects",
+      "experiences": "Experiences",
+      "contact": "Contact"
+    }
   },
   "home": {
     "hi": "Hi, I am",

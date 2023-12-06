@@ -11,22 +11,32 @@ import ThemeIcon from "../theme-icon/ThemeIcon";
 import SwitchLanguage from "../switches/language/SwitchLanguage";
 import HeaderMobile from "./mobile/HeaderMobile";
 import { getPageNavOptions } from "@/helper/helper";
+import { I18nHeaderTypes } from "@/types/i18n";
 
-export default function Header() {
+interface HeaderProps {
+  i18nHeader: I18nHeaderTypes;
+}
+
+export default function Header({ i18nHeader }: HeaderProps) {
   const { theme, setTheme, pathName } = useContext(PortfolioContext);
 
   const isCellPhoneScreen = window.innerWidth < 421;
 
   return isCellPhoneScreen ? (
-    <HeaderMobile theme={theme} setTheme={setTheme} />
+    <HeaderMobile
+      theme={theme}
+      setTheme={setTheme}
+      pathName={pathName}
+      i18nHeader={i18nHeader}
+    />
   ) : (
     <HeaderContainer>
       <HeaderContent>
         <SwitchLanguage theme={theme} />
         <Nav>
           <ul>
-            {getPageNavOptions(pathName).map((page) => (
-              <Badge key={page.pageName} message={page.pageName}>
+            {getPageNavOptions(pathName, i18nHeader).map((page) => (
+              <Badge key={page.pageName} message={page.pageName.toLowerCase()}>
                 <Link href={page.href}>
                   <li>{page.icon}</li>
                 </Link>
@@ -37,11 +47,11 @@ export default function Header() {
         <SwitchTheme $isDarkTheme={theme === "dark"}>
           <div className="labels">
             <button className="dark-button" onClick={() => setTheme("dark")}>
-              Dark
+              {i18nHeader.theme.dark}
             </button>{" "}
             |{" "}
             <button className="light-button" onClick={() => setTheme("light")}>
-              Light
+              {i18nHeader.theme.light}
             </button>
           </div>
           <ThemeIcon currentTheme={theme} width={40} />

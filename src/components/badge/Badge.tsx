@@ -13,10 +13,28 @@ export function Badge({ message, children }: BadgeProps) {
   const [showBadgeMessage, setShowBadgeMessage] = useState("");
   const { theme, pathName } = useContext(PortfolioContext);
 
+  const convertedMessageToEnglish = convertToEnglish(message);
+
   const isActive =
-    pathName.includes(message) ||
-    (pathName === `/${pathName.split("/")[1]}` && message === "home");
-  const isHover = showBadgeMessage === message;
+    pathName.toLowerCase().includes(convertedMessageToEnglish) ||
+    (pathName.toLowerCase() === `/${pathName.toLowerCase().split("/")[1]}` &&
+      convertedMessageToEnglish === "home");
+  const isHover = showBadgeMessage === convertedMessageToEnglish;
+
+  function convertToEnglish(message: string): string {
+    switch (message) {
+      case "início":
+        return "home";
+      case "projetos":
+        return "projects";
+      case "experiências":
+        return "experiences";
+      case "contato":
+        return "contact";
+      default:
+        return message;
+    }
+  }
 
   return (
     <BadgeContainer>
@@ -28,7 +46,7 @@ export function Badge({ message, children }: BadgeProps) {
         {message}
       </BadgeMessage>
       <ElementContent
-        onMouseEnter={() => setShowBadgeMessage(message)}
+        onMouseEnter={() => setShowBadgeMessage(convertedMessageToEnglish)}
         onMouseLeave={() => setShowBadgeMessage("")}
         $isActive={isActive}
         $currentTheme={theme}

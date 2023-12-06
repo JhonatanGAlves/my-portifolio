@@ -7,6 +7,7 @@ import PortfolioProvider from "@/context/PortfolioContext";
 import Main from "@/components/main/Main";
 import Footer from "@/components/footer/Footer";
 import { defaultLocale, i18n, Locale } from "../../../i18n.config";
+import IntermediateHeader from "@/components/header/IntermediateHeader";
 
 const sourceCodePro = Source_Code_Pro({
   subsets: ["latin"],
@@ -36,7 +37,7 @@ export default function RootLayout({
         <StyledComponentsRegistry>
           <PortfolioProvider>
             <GlobalStyles />
-            <Header />
+            <IntermediateHeader params={params} />
             <Main>{children}</Main>
             <Footer />
           </PortfolioProvider>

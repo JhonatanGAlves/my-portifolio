@@ -1,11 +1,15 @@
 {
   "header": {
-    "dark": "Escuro",
-    "light": "Claro",
-    "home": "Início",
-    "projects": "Projetos",
-    "experiences": "Experiências",
-    "contact": "Contato"
+    "theme": {
+      "dark": "Escuro",
+      "light": "Claro"
+    },
+    "nav": {
+      "home": "Início",
+      "projects": "Projetos",
+      "experiences": "Experiências",
+      "contact": "Contato"
+    }
   },
   "home": {
     "hi": "Olá, eu sou",
