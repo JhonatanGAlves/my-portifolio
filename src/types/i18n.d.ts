@@ -1,6 +1,7 @@
 export type PortfolioData = {
   header: I18nHeaderTypes;
-  home: I18nHomeTypes;
+  pages: I18nPagesTypes;
+  footer: I18nFooterTypes;
 };
 
 export type I18nHeaderTypes = {
@@ -16,6 +17,10 @@ export type I18nHeaderTypes = {
   };
 };
 
+export type I18nPagesTypes = {
+  home: I18nHomeTypes;
+};
+
 export type I18nHomeTypes = {
   hi: string;
   softwareDeveloper: string;
@@ -23,4 +28,8 @@ export type I18nHomeTypes = {
   year: string;
   years: string;
   download: string;
+};
+
+export type I18nFooterTypes = {
+  copyright: string;
 };

@@ -7,7 +7,7 @@ export default async function Home({
 }: {
   params: { lang: Locale };
 }) {
-  const { home } = await getLocales(lang);
+  const { pages } = await getLocales(lang);
 
-  return <HomePage i18nHome={home} />;
+  return <HomePage i18nHome={pages.home} />;
 }

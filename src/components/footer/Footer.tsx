@@ -1,17 +1,19 @@
 "use client";
-
+import { I18nFooterTypes } from "@/types/i18n";
 import { styled } from "styled-components";
 
-interface FooterProps {}
+interface FooterProps {
+  i18nFooter: I18nFooterTypes;
+}
 
-export default function Footer({}: FooterProps) {
+export default function Footer({ i18nFooter }: FooterProps) {
   const currentYear = new Date().getFullYear();
 
   return (
     <FooterContainer>
       <span>&copy;</span>
       <small>
-        Copyright {currentYear}{" "}
+        {i18nFooter.copyright} {currentYear}{" "}
         <a href="https://github.com/JhonatanGAlves" target="_blank">
           @JhonatanGAlves
         </a>

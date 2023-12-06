@@ -1,13 +1,12 @@
 import { Source_Code_Pro } from "next/font/google";
 
-import Header from "../../components/header/Header";
 import StyledComponentsRegistry from "../../lib/styledComponentsRegistry";
 import { GlobalStyles } from "@/styles/global";
 import PortfolioProvider from "@/context/PortfolioContext";
 import Main from "@/components/main/Main";
-import Footer from "@/components/footer/Footer";
 import { defaultLocale, i18n, Locale } from "../../../i18n.config";
 import IntermediateHeader from "@/components/header/IntermediateHeader";
+import IntermediateFooter from "@/components/footer/IntermediateFooter";
 
 const sourceCodePro = Source_Code_Pro({
   subsets: ["latin"],
@@ -39,7 +38,7 @@ export default function RootLayout({
             <GlobalStyles />
             <IntermediateHeader params={params} />
             <Main>{children}</Main>
-            <Footer />
+            <IntermediateFooter params={params} />
           </PortfolioProvider>
         </StyledComponentsRegistry>
       </body>

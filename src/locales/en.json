@@ -11,12 +11,17 @@
       "contact": "Contact"
     }
   },
-  "home": {
-    "hi": "Hi, I am",
-    "softwareDeveloper": "I’m a Software Developer.",
-    "mainExperiences": "My main experiences:",
-    "year": "year",
-    "years": "years",
-    "download": "Download CV"
+  "pages": {
+    "home": {
+      "hi": "Hi, I am",
+      "softwareDeveloper": "I’m a Software Developer.",
+      "mainExperiences": "My main experiences:",
+      "year": "year",
+      "years": "years",
+      "download": "Download CV"
+    }
+  },
+  "footer": {
+    "copyright": "Copyright"
   }
 }

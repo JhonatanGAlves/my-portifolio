@@ -11,12 +11,17 @@
       "contact": "Contato"
     }
   },
-  "home": {
-    "hi": "Olá, eu sou",
-    "softwareDeveloper": "Sou um Desenvolvedor de Software.",
-    "mainExperiences": "Minhas principais experiências:",
-    "year": "ano",
-    "years": "anos",
-    "download": "Baixar CV"
+  "pages": {
+    "home": {
+      "hi": "Olá, eu sou",
+      "softwareDeveloper": "Sou um Desenvolvedor de Software.",
+      "mainExperiences": "Minhas principais experiências:",
+      "year": "ano",
+      "years": "anos",
+      "download": "Baixar CV"
+    }
+  },
+  "footer": {
+    "copyright": "Direitos reservados"
   }
 }
